@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S.A.P – Société Acadienne du Paranormal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#b8322a;
+  --red-dim:#6f1d19;
+  --gold:#c5a24a;
+  --gold-dim:#806b32;
+  --blue:#172542;
+  --dark:#070707;
+  --dark2:#0c0b0a;
+  --dark3:#14110f;
+  --paper:#d8c59a;
+  --paper-dim:#a89773;
+  --text:#e9dfc9;
+  --muted:#9e927a;
+  --line:rgba(197,162,74,.18);
+  --redline:rgba(184,50,42,.22);
+}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(circle at 12% 18%, rgba(184,50,42,.08), transparent 28%),
+    radial-gradient(circle at 86% 8%, rgba(23,37,66,.26), transparent 26%),
+    linear-gradient(180deg,#050505 0%,#0b0908 45%,#070707 100%);
+  color:var(--text);
+  font-family:'EB Garamond',serif;
+  font-size:18px;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.045;mix-blend-mode:screen;animation:grain 700ms steps(2) infinite;
+}
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:999;
+  background:repeating-linear-gradient(to bottom,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 4px);
+  opacity:.16;
+}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-1%,1%)}50%{transform:translate(1%,-1%)}75%{transform:translate(-1%,-1%)}100%{transform:translate(1%,1%)}}
+
+a{color:inherit}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  height:76px;padding:0 4rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:linear-gradient(to bottom,rgba(7,7,7,.98),rgba(7,7,7,.78));
+  border-bottom:1px solid var(--redline);
+  backdrop-filter:blur(10px);
+}
+nav.scrolled{background:rgba(7,7,7,.98)}
+.nav-logo{
+  display:flex;align-items:center;gap:.8rem;text-decoration:none;
+  font-family:'Cinzel',serif;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;font-size:.95rem;
+}
+.nav-logo-emblem{
+  width:42px;height:42px;border:1px solid rgba(197,162,74,.55);border-radius:50%;
+  display:grid;place-items:center;position:relative;background:rgba(197,162,74,.035);
+  box-shadow:0 0 22px rgba(184,50,42,.08) inset;
+}
+.nav-logo-emblem::before{content:'★';font-size:.75rem;color:var(--gold)}
+.nav-logo-emblem::after{content:'';position:absolute;inset:8px;border:1px solid rgba(184,50,42,.35);border-radius:50%}
+.nav-links{display:flex;gap:2.1rem;list-style:none}
+.nav-links a{
+  font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;position:relative;padding-bottom:5px;transition:color .25s;
+}
+.nav-links a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--red);transform:scaleX(0);transition:transform .25s}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+
+/* HERO */
+.hero{
+  min-height:100vh;position:relative;display:flex;align-items:center;padding:9rem 4rem 5rem;overflow:hidden;
+  border-bottom:1px solid var(--redline);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;opacity:.23;
+  background-image:
+    linear-gradient(rgba(197,162,74,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(197,162,74,.07) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:radial-gradient(circle at 55% 44%,black 0%,transparent 72%);
+}
+.hero::after{
+  content:'ACADIE / DOSSIER / SIGNAL / ARCHIVES / EVP / TERRAIN / TEMOIGNAGE /';
+  position:absolute;left:-4rem;right:-4rem;bottom:2rem;
+  color:rgba(197,162,74,.08);font-family:'Cinzel',serif;font-size:clamp(2.5rem,8vw,7rem);
+  letter-spacing:.12em;white-space:nowrap;transform:rotate(-2deg);pointer-events:none;
+}
+.hero-layout{width:min(1180px,100%);margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:4rem;align-items:center;position:relative;z-index:2}
+.hero-kicker{font-family:'Special Elite',monospace;color:var(--red);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:1.2rem}
+.hero-title{
+  font-family:'Cinzel',serif;font-size:clamp(2.6rem,6vw,5.7rem);line-height:.98;letter-spacing:.035em;text-transform:uppercase;
+  color:#f5ecd9;text-shadow:0 0 38px rgba(184,50,42,.16);margin-bottom:1.5rem;
+}
+.hero-title span{display:block;color:var(--gold);font-size:.58em;letter-spacing:.16em;margin-top:.5rem}
+.hero-desc{max-width:610px;color:var(--paper-dim);font-size:1.25rem;margin-bottom:2rem}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin:2.2rem 0 2rem}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:.85rem 1.3rem;border:1px solid var(--red);
+  color:var(--text);text-decoration:none;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  background:rgba(184,50,42,.08);transition:background .25s,border-color .25s,color .25s;
+}
+.btn:hover{background:rgba(184,50,42,.22);border-color:#d0483d;color:#fff}
+.btn.secondary{border-color:rgba(197,162,74,.35);background:rgba(197,162,74,.04);color:var(--gold)}
+.btn.secondary:hover{border-color:var(--gold);background:rgba(197,162,74,.11)}
+.field-note{
+  display:grid;grid-template-columns:auto 1fr;gap:.75rem;max-width:560px;color:var(--muted);font-size:.98rem;
+  border-left:1px solid var(--redline);padding-left:1rem;
+}
+.field-note b{font-family:'Special Elite',monospace;color:var(--paper);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;padding-top:.13rem}
+
+.archive-panel{
+  position:relative;min-height:540px;border:1px solid var(--line);background:rgba(12,11,10,.65);padding:1.4rem;
+  box-shadow:0 24px 80px rgba(0,0,0,.35), inset 0 0 60px rgba(184,50,42,.035);
+  transform:rotate(.35deg);
+}
+.archive-panel::before,.archive-panel::after{content:'';position:absolute;width:86px;height:86px;border-color:rgba(197,162,74,.38);pointer-events:none}
+.archive-panel::before{top:12px;left:12px;border-top:1px solid;border-left:1px solid}
+.archive-panel::after{right:12px;bottom:12px;border-right:1px solid;border-bottom:1px solid}
+.case-map{
+  position:absolute;inset:1.4rem;background:
+    radial-gradient(circle at 62% 40%,rgba(184,50,42,.16),transparent 18%),
+    radial-gradient(circle at 35% 62%,rgba(197,162,74,.10),transparent 20%),
+    linear-gradient(135deg,rgba(197,162,74,.08),transparent 32%),
+    #0a0908;
+  overflow:hidden;
+}
+.case-map svg{position:absolute;inset:0;width:100%;height:100%;opacity:.42}
+.case-map .stamp{
+  position:absolute;top:2rem;right:1.5rem;border:2px solid rgba(184,50,42,.55);color:rgba(184,50,42,.72);
+  font-family:'Special Elite',monospace;font-size:1.05rem;letter-spacing:.16em;text-transform:uppercase;padding:.45rem .8rem;transform:rotate(8deg);
+}
+.photo-card{
+  position:absolute;left:2rem;bottom:2.2rem;width:56%;min-height:225px;background:#15110d;border:1px solid rgba(216,197,154,.22);padding:.8rem;transform:rotate(-2deg);
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
+}
+.photo-card::before{content:'PHOTO / TERRAIN';font-family:'Special Elite',monospace;color:var(--paper-dim);font-size:.64rem;letter-spacing:.14em}
+.photo-frame{height:150px;margin-top:.65rem;background:
+  linear-gradient(rgba(255,255,255,.02),rgba(0,0,0,.12)),
+  radial-gradient(circle at 55% 40%,rgba(216,197,154,.13),transparent 22%),
+  linear-gradient(160deg,#201914,#080808);border:1px solid rgba(255,255,255,.05);position:relative;overflow:hidden}
+.photo-frame::before{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 0 48%,rgba(255,255,255,.08) 49%,transparent 52%);opacity:.45}
+.photo-frame::after{content:'ANOMALIE?';position:absolute;right:.55rem;bottom:.45rem;font-family:'Special Elite',monospace;color:rgba(184,50,42,.8);font-size:.7rem;letter-spacing:.13em}
+.evp-strip{
+  position:absolute;right:1.7rem;bottom:6.4rem;width:42%;padding:1rem;border:1px solid rgba(184,50,42,.22);background:rgba(5,5,5,.76);
+}
+.evp-strip small{font-family:'Special Elite',monospace;color:var(--paper-dim);letter-spacing:.16em;text-transform:uppercase}
+.wave{height:70px;margin-top:.7rem;display:flex;align-items:center;gap:4px}
+.wave i{display:block;width:3px;background:rgba(197,162,74,.55);height:var(--h);animation:flicker 7s infinite}
+.file-tags{position:absolute;left:1.7rem;top:2rem;display:flex;flex-direction:column;gap:.5rem;font-family:'Special Elite',monospace;font-size:.72rem;color:var(--paper-dim);letter-spacing:.13em}
+.file-tags span{background:rgba(0,0,0,.55);border:1px solid rgba(197,162,74,.18);padding:.35rem .55rem;width:max-content}
+.redact{display:inline-block;background:rgba(184,50,42,.35);color:transparent;padding:0 .8rem;margin:0 .1rem}
+
+/* SECTIONS */
+section{position:relative;padding:6rem 4rem}
+.section-inner{max-width:1120px;margin:0 auto;position:relative;z-index:2}
+.section-header{margin-bottom:3rem;display:flex;align-items:end;justify-content:space-between;gap:2rem;border-bottom:1px solid var(--line);padding-bottom:1.2rem}
+.eyebrow{font-family:'Special Elite',monospace;color:var(--red);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:.65rem}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(1.6rem,3vw,2.8rem);line-height:1.1;text-transform:uppercase;color:#fff;letter-spacing:.04em}
+.section-copy{max-width:470px;color:var(--muted);font-size:1.05rem}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* FEATURED DOSSIER */
+.featured{background:linear-gradient(180deg,var(--dark2),#080808);border-bottom:1px solid var(--redline)}
+.dossier-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:1px;background:rgba(197,162,74,.13);border:1px solid rgba(197,162,74,.15)}
+.dossier-meta,.dossier-body{background:#0b0a09;padding:2rem}
+.dossier-meta{font-family:'Special Elite',monospace;color:var(--paper-dim);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase}
+.meta-row{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.meta-row span:last-child{color:var(--gold);text-align:right}
+.dossier-body h3{font-family:'Cinzel',serif;font-size:1.6rem;text-transform:uppercase;color:#fff;margin-bottom:1rem;letter-spacing:.05em}
+.dossier-body p{color:var(--muted);margin-bottom:1rem}
+.evidence-list{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,50,42,.14);margin-top:1.5rem}
+.evidence-list div{background:#100d0c;padding:1rem;text-align:center;font-family:'Special Elite',monospace;font-size:.72rem;color:var(--paper-dim);letter-spacing:.14em;text-transform:uppercase}
+
+/* MISSION */
+.mission{background:#080808;border-bottom:1px solid var(--redline)}
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.mission-text p{color:var(--muted);margin-bottom:1.1rem;font-size:1.12rem}
+.mission-text p:first-of-type{color:var(--text);font-size:1.24rem}
+.protocol-card{border:1px solid var(--line);background:rgba(197,162,74,.035);padding:1.5rem;position:relative}
+.protocol-card::before{content:'PROTOCOLE';position:absolute;top:-.75rem;left:1rem;background:#080808;color:var(--red);font-family:'Special Elite',monospace;font-size:.7rem;letter-spacing:.18em;padding:0 .5rem}
+.protocol-list{list-style:none}
+.protocol-list li{display:grid;grid-template-columns:38px 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,.06);color:var(--muted)}
+.protocol-list li:last-child{border-bottom:none}
+.protocol-list b{font-family:'Cinzel',serif;color:var(--gold);font-size:.85rem}
+.protocol-list strong{display:block;color:var(--text);font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.15rem}
+
+/* DOSSIER CARDS */
+.cards-section{background:linear-gradient(180deg,#070707,#0c0b0a)}
+.cards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.card{
+  min-height:280px;border:1px solid rgba(197,162,74,.14);background:rgba(12,11,10,.86);padding:1.4rem;position:relative;overflow:hidden;
+  transition:transform .25s,border-color .25s,background .25s;cursor:pointer;
+}
+.card:hover{transform:translateY(-4px);border-color:rgba(184,50,42,.5);background:rgba(17,12,11,.94)}
+.card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(184,50,42,.08),transparent 48%);opacity:0;transition:opacity .25s}
+.card:hover::before{opacity:1}
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:2rem;position:relative;z-index:1}
+.card-code{font-family:'Special Elite',monospace;color:var(--red);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase}
+.card-mark{width:26px;height:26px;border:1px solid rgba(197,162,74,.34);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:.65rem}
+.card h3{font-family:'Cinzel',serif;color:#fff;text-transform:uppercase;font-size:1rem;letter-spacing:.12em;margin-bottom:.7rem;position:relative;z-index:1}
+.card p{color:var(--muted);font-size:.98rem;position:relative;z-index:1}
+.card-link{position:absolute;left:1.4rem;bottom:1.3rem;font-family:'Special Elite',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(197,162,74,.32);z-index:1}
+.card-glitch{position:absolute;inset:0;pointer-events:none;background:rgba(184,50,42,.05);animation:glitch .18s steps(1) forwards;z-index:2}
+@keyframes glitch{0%{opacity:.9;clip-path:inset(12% 0 72% 0)}25%{clip-path:inset(62% 0 18% 0)}50%{clip-path:inset(34% 0 44% 0)}75%{clip-path:inset(80% 0 8% 0)}100%{opacity:0}}
+@keyframes flicker{0%,92%,100%{opacity:1}93%{opacity:.35}94%{opacity:1}96%{opacity:.48}97%{opacity:1}}
+.flicker{animation:flicker 8s infinite}
+
+/* JOURNAL */
+.journal{background:#080808;border-top:1px solid var(--redline);border-bottom:1px solid var(--redline)}
+.logbook{border:1px solid var(--line);background:rgba(12,11,10,.75)}
+.log-entry{display:grid;grid-template-columns:150px 1fr 110px;gap:1.2rem;align-items:start;padding:1.2rem 1.4rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.log-entry:last-child{border-bottom:none}
+.log-date,.log-status{font-family:'Special Elite',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.log-status{color:var(--gold);text-align:right}
+.log-text h3{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;margin-bottom:.25rem}
+.log-text p{color:var(--muted)}
+
+/* CTA */
+.cta{background:linear-gradient(180deg,#0c0b0a,#050505);text-align:center}
+.cta-box{max-width:830px;margin:0 auto;border:1px solid var(--redline);padding:3rem 2rem;background:rgba(184,50,42,.035);position:relative}
+.cta-box::before{content:'SIGNALER / CONTACTER / SOUTENIR';position:absolute;top:-.7rem;left:50%;transform:translateX(-50%);background:#090807;color:var(--red);font-family:'Special Elite',monospace;font-size:.68rem;letter-spacing:.2em;padding:0 .7rem;white-space:nowrap}
+.cta h2{font-family:'Cinzel',serif;text-transform:uppercase;font-size:clamp(1.6rem,3vw,2.6rem);letter-spacing:.05em;margin-bottom:1rem}
+.cta p{color:var(--muted);max-width:620px;margin:0 auto 2rem;font-size:1.1rem}
+
+footer{background:#050505;border-top:1px solid var(--redline);padding:3rem 4rem;color:var(--muted)}
+.footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:2rem;align-items:center}
+.footer-brand{font-family:'Cinzel',serif;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;font-size:.88rem}
+.footer-brand small{display:block;font-family:'Special Elite',monospace;color:var(--muted);font-size:.64rem;margin-top:.35rem;letter-spacing:.16em}
+.footer-links{display:flex;gap:1rem;font-family:'Special Elite',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase}
+.footer-links a{text-decoration:none;color:var(--muted)}
+.footer-links a:hover{color:var(--gold)}
+
+@media(max-width:1050px){
+  nav{padding:0 2rem}.nav-links{gap:1.2rem}.hero{padding:8rem 2rem 4rem}.hero-layout,.mission-grid,.dossier-grid{grid-template-columns:1fr}.archive-panel{min-height:470px}.cards-grid{grid-template-columns:repeat(2,1fr)}section{padding:4.5rem 2rem}.section-header{display:block}.section-copy{margin-top:1rem}.evidence-list{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:680px){
+  .nav-links{display:none}.hero-title{font-size:2.45rem}.archive-panel{display:none}.hero-layout{display:block}.cards-grid{grid-template-columns:1fr}.log-entry{grid-template-columns:1fr}.log-status{text-align:left}.footer-inner{display:block;text-align:center}.footer-links{justify-content:center;margin-top:1.2rem;flex-wrap:wrap}.hero-actions{display:grid}.btn{width:100%}
+}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="#" class="nav-logo"><span class="nav-logo-emblem"></span><span>S.A.P</span></a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Accueil</a></li>
+    <li><a href="#dossiers">Dossiers</a></li>
+    <li><a href="#archives">Archives</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#contact">Nous contacter</a></li>
+    <li><a href="#dons">Dons</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-layout">
+    <div class="hero-copy">
+      <div class="hero-kicker flicker">S.A.P / Société Acadienne du Paranormal</div>
+      <h1 class="hero-title">Archives de l'inexpliqué <span>en Acadie</span></h1>
+      <p class="hero-desc">Enquêtes, témoignages et dossiers paranormaux liés aux lieux, récits et phénomènes étranges de notre région.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#dossiers">Consulter les dossiers</a>
+        <a class="btn secondary" href="#contact">Signaler un phénomène</a>
+      </div>
+      <div class="field-note">
+        <b>Note</b>
+        <span>Placeholder de direction visuelle. Le ton visé: archive locale, enquête terrain, folklore acadien, pas maison hantée générique.</span>
+      </div>
+    </div>
+
+    <div class="archive-panel" aria-hidden="true">
+      <div class="case-map">
+        <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+          <path d="M82 460 C160 380 150 300 220 260 C290 220 330 145 420 122 C500 102 536 160 510 238 C486 310 420 316 392 390 C365 462 280 510 195 500 C145 494 108 485 82 460Z" fill="none" stroke="rgba(216,197,154,.55)" stroke-width="2"/>
+          <path d="M145 410 C210 390 236 338 272 314 C318 284 350 245 425 224" fill="none" stroke="rgba(184,50,42,.45)" stroke-width="1.5" stroke-dasharray="6 8"/>
+          <circle cx="236" cy="338" r="6" fill="rgba(184,50,42,.8)"/>
+          <circle cx="350" cy="245" r="5" fill="rgba(197,162,74,.75)"/>
+          <circle cx="425" cy="224" r="4" fill="rgba(184,50,42,.65)"/>
+          <text x="70" y="92" fill="rgba(216,197,154,.32)" font-family="serif" font-size="42">ACADIE</text>
+          <path d="M40 180 H560 M40 300 H560 M40 420 H560 M180 40 V560 M300 40 V560 M420 40 V560" stroke="rgba(216,197,154,.09)"/>
+        </svg>
+        <div class="file-tags">
+          <span>Dossier: SAP-000</span>
+          <span>Lieu: <span class="redact">xxxx</span></span>
+          <span>Statut: Ouvert</span>
+        </div>
+        <div class="stamp">À vérifier</div>
+        <div class="photo-card">
+          <div class="photo-frame"></div>
+        </div>
+        <div class="evp-strip">
+          <small>EVP / Signal brut</small>
+          <div class="wave">
+            <i style="--h:18px"></i><i style="--h:42px"></i><i style="--h:24px"></i><i style="--h:58px"></i><i style="--h:34px"></i><i style="--h:64px"></i><i style="--h:28px"></i><i style="--h:52px"></i><i style="--h:20px"></i><i style="--h:46px"></i><i style="--h:30px"></i><i style="--h:60px"></i><i style="--h:24px"></i><i style="--h:38px"></i><i style="--h:22px"></i><i style="--h:56px"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="featured reveal" id="archives">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="eyebrow">Dossier en vedette</div>
+        <h2 class="section-title">Une page ouverte sur le terrain</h2>
+      </div>
+      <p class="section-copy">La page d'accueil doit vendre l'univers du site rapidement: lieux, dossiers, preuves, témoignages. La boutique peut attendre son tour.</p>
+    </div>
+    <div class="dossier-grid">
+      <div class="dossier-meta">
+        <div class="meta-row"><span>Code</span><span>SAP-001</span></div>
+        <div class="meta-row"><span>Région</span><span>Acadie</span></div>
+        <div class="meta-row"><span>Type</span><span>Témoignage</span></div>
+        <div class="meta-row"><span>Preuves</span><span>Photo / Audio</span></div>
+        <div class="meta-row"><span>Statut</span><span>À documenter</span></div>
+      </div>
+      <div class="dossier-body">
+        <h3>Dossier placeholder</h3>
+        <p>Ce bloc sert à montrer comment présenter un cas sans tomber dans le spectacle. Le style doit ressembler à une archive vivante: sobre, intriguant, local.</p>
+        <p>Quand le vrai contenu sera prêt, cette section pourra devenir un dossier récent, une histoire locale, une enquête photo ou un appel à témoignages.</p>
+        <div class="evidence-list">
+          <div>Photos</div><div>Audio</div><div>Notes</div><div>Témoins</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mission reveal" id="mission">
+  <div class="section-inner mission-grid">
+    <div class="mission-text">
+      <div class="eyebrow">Notre mission</div>
+      <h2 class="section-title">Documenter avant de conclure</h2>
+      <p>La Société Acadienne du Paranormal rassemble les récits, lieux et phénomènes inexpliqués associés à l'Acadie.</p>
+      <p>Le site doit donner une impression de sérieux sans tuer le mystère. On ne promet pas des fantômes. On ouvre des dossiers, on recueille des témoignages, on classe les traces.</p>
+      <p>Le ton visuel doit être assez sombre pour attirer, assez sobre pour être crédible, et assez local pour ne pas ressembler à un thème Halloween vendu en paquet de douze.</p>
+    </div>
+    <div class="protocol-card">
+      <ul class="protocol-list">
+        <li><b>01</b><span><strong>Recevoir</strong>Récits, lieux, photos, sons, impressions et demandes d'enquête.</span></li>
+        <li><b>02</b><span><strong>Documenter</strong>Conserver les détails utiles: date, contexte, témoins, conditions et matériel.</span></li>
+        <li><b>03</b><span><strong>Comparer</strong>Séparer folklore, hasard, environnement, canular possible et vraie étrangeté.</span></li>
+        <li><b>04</b><span><strong>Partager</strong>Publier des dossiers accessibles sans transformer chaque ombre en apocalypse.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cards-section reveal" id="dossiers">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="eyebrow">Explorer</div>
+        <h2 class="section-title">Les portes d'entrée</h2>
+      </div>
+      <p class="section-copy">Les anciennes cartes avec emojis ont été remplacées par des panneaux de dossiers. Même fonction, meilleure atmosphère.</p>
+    </div>
+    <div class="cards-grid">
+      <article class="card" onmouseenter="triggerGlitch(this)">
+        <div class="card-top"><span class="card-code">Dossier 01</span><span class="card-mark">★</span></div>
+        <h3>Histoire</h3>
+        <p>Origines de la S.A.P, fondateurs, mission et lien avec les récits acadiens.</p>
+        <a class="card-link" href="#">Ouvrir</a>
+      </article>
+      <article class="card" onmouseenter="triggerGlitch(this)">
+        <div class="card-top"><span class="card-code">Dossier 02</span><span class="card-mark">◌</span></div>
+        <h3>Archives photo</h3>
+        <p>Images de terrain, lieux visités, anomalies visuelles et traces à comparer.</p>
+        <a class="card-link" href="#">Consulter</a>
+      </article>
+      <article class="card" onmouseenter="triggerGlitch(this)">
+        <div class="card-top"><span class="card-code">Dossier 03</span><span class="card-mark">≋</span></div>
+        <h3>Témoignages</h3>
+        <p>Récits soumis par la communauté, classés par lieu, date et phénomène.</p>
+        <a class="card-link" href="#">Lire</a>
+      </article>
+      <article class="card" onmouseenter="triggerGlitch(this)">
+        <div class="card-top"><span class="card-code">Dossier 04</span><span class="card-mark">+</span></div>
+        <h3>Soutenir</h3>
+        <p>Dons, boutique et soutien matériel pour aider les prochaines enquêtes.</p>
+        <a class="card-link" href="#dons">Aider</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="journal reveal">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="eyebrow">Journal</div>
+        <h2 class="section-title">Entrées récentes</h2>
+      </div>
+      <p class="section-copy">Placeholder volontairement sobre: il donne de la profondeur au site sans inventer une mythologie trop forte trop vite.</p>
+    </div>
+    <div class="logbook">
+      <div class="log-entry">
+        <div class="log-date">MAI 2025</div>
+        <div class="log-text"><h3>Lieu à confirmer</h3><p>Signalement reçu. Informations de base manquantes. Dossier en attente de validation.</p></div>
+        <div class="log-status">Ouvert</div>
+      </div>
+      <div class="log-entry">
+        <div class="log-date">FÉV 2025</div>
+        <div class="log-text"><h3>Archive sonore</h3><p>Segment audio isolé pour comparaison. Analyse non concluante.</p></div>
+        <div class="log-status">Analyse</div>
+      </div>
+      <div class="log-entry">
+        <div class="log-date">OCT 2024</div>
+        <div class="log-text"><h3>Photographie nocturne</h3><p>Image conservée comme référence visuelle. Conditions météo à ajouter.</p></div>
+        <div class="log-status">Classé</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta reveal" id="contact">
+  <div class="cta-box">
+    <h2>Vous avez vu, entendu ou vécu quelque chose?</h2>
+    <p>Le meilleur appel à l'action pour ce site n'est pas seulement “nous contacter”. C'est “signaler un phénomène”. Ça donne tout de suite une raison de participer.</p>
+    <div class="hero-actions" style="justify-content:center;margin-bottom:0">
+      <a class="btn" href="#">Signaler un phénomène</a>
+      <a class="btn secondary" href="#dons">Faire un don</a>
+    </div>
+  </div>
+</section>
+
+<footer id="dons">
+  <div class="footer-inner">
+    <div class="footer-brand">Société Acadienne du Paranormal<small>saparanormal.ca / archives de l'inexpliqué</small></div>
+    <div class="footer-links"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">Boutique</a></div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
+const reveals=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(entries=>{entries.forEach((entry,i)=>{if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),i*80)}})},{threshold:.12});
+reveals.forEach(el=>io.observe(el));
+function triggerGlitch(card){const g=document.createElement('div');g.className='card-glitch';card.appendChild(g);setTimeout(()=>g.remove(),260)}
+</script>
+</body>
+</html>
