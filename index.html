@@ -60,16 +60,88 @@ nav{
 }
 nav.scrolled{background:rgba(7,7,7,.98)}
 .nav-logo{
-  display:flex;align-items:center;gap:.8rem;text-decoration:none;
-  font-family:'Cinzel',serif;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;font-size:.95rem;
+  display:flex;align-items:center;gap:.7rem;text-decoration:none;
+  font-family:'Cinzel',serif;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;font-size:.95rem;
 }
-.nav-logo-emblem{
-  width:42px;height:42px;border:1px solid rgba(197,162,74,.55);border-radius:50%;
-  display:grid;place-items:center;position:relative;background:rgba(197,162,74,.035);
-  box-shadow:0 0 22px rgba(184,50,42,.08) inset;
+
+/* Animated SVG emblem — matches original: gold outer ring, red inner ring, centered gold star */
+.nav-logo-svg{
+  width:42px;height:42px;flex-shrink:0;overflow:visible;
 }
-.nav-logo-emblem::before{content:'★';font-size:.75rem;color:var(--gold)}
-.nav-logo-emblem::after{content:'';position:absolute;inset:8px;border:1px solid rgba(184,50,42,.35);border-radius:50%}
+/* Outer ring: original was border:1px solid rgba(197,162,74,.55) on 42px circle → r=20.5 */
+.nl-ring-outer{
+  fill:rgba(197,162,74,.035);
+  stroke:rgba(197,162,74,.55);
+  stroke-width:1;
+  stroke-dasharray:128.8;stroke-dashoffset:128.8;
+  animation:nlDrawOuter .9s cubic-bezier(.65,0,.35,1) .1s forwards, nlPulse 6s ease-in-out 4s infinite;
+}
+@keyframes nlDrawOuter{to{stroke-dashoffset:0}}
+@keyframes nlPulse{
+  0%,100%{filter:drop-shadow(0 0 2px rgba(197,162,74,.1))}
+  50%    {filter:drop-shadow(0 0 7px rgba(197,162,74,.4))}
+}
+/* Inner ring: original was inset:8px → r=12.5, red border rgba(184,50,42,.35) */
+.nl-ring-inner{
+  fill:none;
+  stroke:rgba(184,50,42,.35);
+  stroke-width:1;
+  stroke-dasharray:78.5;stroke-dashoffset:78.5;
+  animation:nlDrawInner .7s cubic-bezier(.65,0,.35,1) .8s forwards;
+}
+@keyframes nlDrawInner{to{stroke-dashoffset:0}}
+/* Star: original was centered ★ at .75rem gold — pivot center 21,21 */
+.nl-star{
+  transform-origin:21px 21px;
+  opacity:0;
+  animation:
+    nlStarIn .45s cubic-bezier(.22,1,.36,1) 1.35s forwards,
+    nlStarFlicker 12s 10s infinite;
+}
+@keyframes nlStarIn{
+  0%  {opacity:0;transform:scale(.2) rotate(-28deg)}
+  65% {opacity:1;transform:scale(1.07) rotate(3deg)}
+  100%{opacity:1;transform:scale(1)   rotate(0deg)}
+}
+@keyframes nlStarFlicker{
+  0%   {opacity:1}
+  1%   {opacity:.12}
+  1.8% {opacity:.95}
+  2.6% {opacity:.04}
+  3.4% {opacity:1}
+  4.2% {opacity:.55}
+  4.8% {opacity:1}
+  100% {opacity:1}
+}
+
+/* Letter-by-letter S.A.P — all gold, same color as original text */
+.nav-logo-letters{
+  display:flex;gap:0;
+  font-family:'Cinzel',serif;letter-spacing:.16em;font-size:.95rem;color:var(--gold);
+}
+.nl-letter{
+  opacity:0;
+  display:inline-block;
+  animation:nlLetterIn .4s cubic-bezier(.22,1,.36,1) forwards;
+}
+.nl-letter.s  { animation-delay:1.8s }
+.nl-letter.dot1{ animation-delay:2.6s; letter-spacing:0 }
+.nl-letter.a  { animation-delay:3.4s }
+.nl-letter.dot2{ animation-delay:4.2s; letter-spacing:0 }
+.nl-letter.p  { animation-delay:5.0s }
+@keyframes nlLetterIn{
+  0%  {opacity:0;transform:translateY(6px)}
+  100%{opacity:1;transform:translateY(0)}
+}
+/* Single glow pulse once all letters land */
+.nav-logo-letters{
+  animation:logoGlow .7s ease 5.5s forwards;
+}
+@keyframes logoGlow{
+  0%  {filter:drop-shadow(0 0 0px rgba(197,162,74,0))}
+  50% {filter:drop-shadow(0 0 8px rgba(197,162,74,.45))}
+  100%{filter:drop-shadow(0 0 3px rgba(197,162,74,.15))}
+}
 .nav-links{display:flex;gap:2.1rem;list-style:none}
 .nav-links a{
   font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
