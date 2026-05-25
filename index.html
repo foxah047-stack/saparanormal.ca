@@ -326,7 +326,22 @@ footer{background:#050505;border-top:1px solid var(--redline);padding:3rem 4rem;
 </head>
 <body>
 <nav id="nav">
-  <a href="#" class="nav-logo"><span class="nav-logo-emblem"></span><span>S.A.P</span></a>
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-svg" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Outer gold ring: r=20.5 matches original 42px circle border -->
+      <circle class="nl-ring-outer" cx="21" cy="21" r="20.5"/>
+      <!-- Inner red ring: original inset:8px → starts 8px in from edge → r=12.5 -->
+      <circle class="nl-ring-inner" cx="21" cy="21" r="12.5" transform="scale(-1,1) translate(-42,0)"/>
+      <!-- Star centered at 21,21 — gold, matches original ★ -->
+      <g class="nl-star">
+        <text x="21" y="25" text-anchor="middle"
+          font-size="13" fill="#c5a24a" font-family="serif">★</text>
+      </g>
+    </svg>
+    <span class="nav-logo-letters" aria-label="S.A.P">
+      <span class="nl-letter s">S</span><span class="nl-letter dot1">.</span><span class="nl-letter a">A</span><span class="nl-letter dot2">.</span><span class="nl-letter p">P</span>
+    </span>
+  </a>
   <ul class="nav-links">
     <li><a href="#" class="active">Accueil</a></li>
     <li><a href="#dossiers">Dossiers</a></li>
