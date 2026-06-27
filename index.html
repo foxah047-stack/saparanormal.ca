@@ -4,374 +4,239 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>S.A.P – Société Acadienne du Paranormal</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Special+Elite&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --red:#b8322a;
-  --red-dim:#6f1d19;
-  --gold:#c5a24a;
-  --gold-dim:#806b32;
-  --blue:#172542;
-  --dark:#070707;
-  --dark2:#0c0b0a;
-  --paper:#d8c59a;
-  --paper-dim:#a89773;
-  --text:#e9dfc9;
-  --muted:#9e927a;
-  --line:rgba(197,162,74,.18);
-  --redline:rgba(184,50,42,.22);
-  --logo-star-offset-x:-4px;
-  --logo-star-offset-y:-3px;
-}
-html,body{
-  min-height:100%;
-  width:100%;
-  overflow-x:hidden;
-}
-body{
-  background:
-    radial-gradient(circle at 12% 18%, rgba(184,50,42,.10), transparent 28%),
-    radial-gradient(circle at 86% 8%, rgba(23,37,66,.28), transparent 26%),
-    radial-gradient(circle at 50% 56%, rgba(197,162,74,.05), transparent 34%),
-    linear-gradient(180deg,#050505 0%,#0b0908 48%,#050505 100%);
-  color:var(--text);
-  font-family:'EB Garamond',serif;
-  font-size:18px;
-  line-height:1.65;
-}
-body::before{
-  content:'';
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:1000;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  opacity:.045;
-  mix-blend-mode:screen;
-  animation:grain 700ms steps(2) infinite;
-}
-body::after{
-  content:'';
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:999;
-  background:repeating-linear-gradient(to bottom,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 4px);
-  opacity:.16;
-}
-@keyframes grain{
-  0%{transform:translate(0,0)}
-  25%{transform:translate(-1%,1%)}
-  50%{transform:translate(1%,-1%)}
-  75%{transform:translate(-1%,-1%)}
-  100%{transform:translate(1%,1%)}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.holding{
-  min-height:100vh;
-  position:relative;
-  display:grid;
-  place-items:center;
-  padding:3rem 1.25rem;
-  overflow:hidden;
+:root {
+  --red: #b8322a;
+  --red-soft: rgba(184, 50, 42, .22);
+  --gold: #c5a24a;
+  --text: #e9dfc9;
+  --muted: #9e927a;
 }
-.holding::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  opacity:.23;
-  background-image:
-    linear-gradient(rgba(197,162,74,.07) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(197,162,74,.07) 1px,transparent 1px);
-  background-size:70px 70px;
-  mask-image:radial-gradient(circle at 50% 48%,black 0%,transparent 72%);
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
 }
-.holding::after{
-  content:'ACADIE / DOSSIER / SIGNAL / ARCHIVES / EVP / TERRAIN / TÉMOIGNAGE /';
-  position:absolute;
-  left:50%;
-  bottom:clamp(1.25rem,5vw,3.25rem);
-  width:max-content;
-  transform:translateX(-50%) rotate(-2deg);
-  color:rgba(197,162,74,.08);
-  font-family:'Cinzel',serif;
-  font-size:clamp(2.2rem,8vw,7rem);
-  letter-spacing:.12em;
-  white-space:nowrap;
-  pointer-events:none;
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #000;
+  color: var(--text);
+  font-family: 'Special Elite', monospace;
 }
-.poster{
-  position:relative;
-  z-index:2;
-  width:min(760px,100%);
-  min-height:min(620px,80vh);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:clamp(2.1rem,6vw,4.5rem) clamp(1.35rem,5vw,3.6rem);
-  border:1px solid var(--redline);
+
+.intro {
+  width: min(1120px, 100vw);
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+}
+
+.intro-inner {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.intro-logo {
+  display: block;
+  width: min(940px, 92vw);
+  height: auto;
+  max-height: 76vh;
+  object-fit: contain;
+}
+
+.enter-wrap {
+  position: relative;
+  margin-top: 1.15rem;
+  display: grid;
+  justify-items: center;
+}
+
+.enter-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -1.3rem -3.4rem -1.6rem;
+  z-index: 0;
+  pointer-events: none;
   background:
-    radial-gradient(circle at 50% 23%, rgba(184,50,42,.11), transparent 30%),
-    linear-gradient(180deg,rgba(12,11,10,.72),rgba(5,5,5,.54));
-  box-shadow:
-    0 28px 100px rgba(0,0,0,.42),
-    inset 0 0 80px rgba(184,50,42,.035);
+    radial-gradient(circle at 50% 48%, rgba(184, 50, 42, .12), transparent 54%),
+    linear-gradient(90deg, transparent, rgba(184, 50, 42, .05), transparent);
+  filter: blur(2px);
+  opacity: .9;
 }
-.poster::before,.poster::after{
-  content:'';
-  position:absolute;
-  width:92px;
-  height:92px;
-  border-color:rgba(197,162,74,.38);
-  pointer-events:none;
+
+.enter-wrap::after {
+  content: "";
+  position: absolute;
+  inset: -.85rem -2.5rem -1.05rem;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(184, 50, 42, .075) 0,
+      rgba(184, 50, 42, .075) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+  opacity: .35;
+  animation: signalShift 4.8s steps(2, end) infinite;
 }
-.poster::before{top:14px;left:14px;border-top:1px solid;border-left:1px solid}
-.poster::after{right:14px;bottom:14px;border-right:1px solid;border-bottom:1px solid}
-.status{
-  position:absolute;
-  top:1.35rem;
-  right:1.35rem;
-  border:2px solid rgba(184,50,42,.48);
-  color:rgba(184,50,42,.74);
-  font-family:'Special Elite',monospace;
-  font-size:.82rem;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  padding:.35rem .62rem;
-  transform:rotate(7deg);
-  animation:softFlicker 9s steps(1,end) 2s infinite;
+
+.enter-link {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  min-width: 118px;
+  padding: .88rem 1.55rem;
+  border: 1px solid rgba(184, 50, 42, .78);
+  background: rgba(184, 50, 42, .035);
+  color: var(--text);
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  transition:
+    background .25s ease,
+    border-color .25s ease,
+    color .25s ease,
+    transform .25s ease,
+    box-shadow .25s ease;
 }
-.logo-lockup{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:1rem;
-  margin-bottom:2rem;
+
+.enter-link:hover,
+.enter-link:focus-visible {
+  background: rgba(184, 50, 42, .18);
+  border-color: #d0483d;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(184, 50, 42, .20);
+  outline: none;
 }
-.logo-emblem{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  position:relative;
-  display:grid;
-  place-items:center;
-  background:rgba(197,162,74,.035);
-  box-shadow:0 0 38px rgba(184,50,42,.12) inset, 0 0 44px rgba(197,162,74,.08);
+
+.enter-link::before,
+.enter-link::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 1px;
+  background: rgba(197, 162, 74, .28);
+  opacity: 0;
+  transform: scaleX(.5);
+  transition: opacity .25s ease, transform .25s ease;
 }
-.logo-svg{
-  position:absolute;
-  inset:0;
-  width:120px;
-  height:120px;
-  overflow:visible;
+
+.enter-link::before {
+  top: 8px;
 }
-.logo-svg path{
-  fill:none;
-  stroke-width:1;
-  vector-effect:non-scaling-stroke;
-  stroke-dasharray:100;
-  stroke-dashoffset:100;
-  opacity:0;
+
+.enter-link::after {
+  bottom: 8px;
 }
-.logo-circle-outer{
-  stroke:rgba(197,162,74,.58);
-  animation:drawCircle 1.25s ease-out forwards, circleOccasionalFlicker 9s steps(1,end) 3.8s infinite;
+
+.enter-link:hover::before,
+.enter-link:hover::after,
+.enter-link:focus-visible::before,
+.enter-link:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
-.logo-circle-inner{
-  stroke:rgba(184,50,42,.40);
-  animation:drawCircle 1.05s ease-out .35s forwards, circleOccasionalFlicker 9s steps(1,end) 4.1s infinite;
+
+.intro-note {
+  position: relative;
+  z-index: 1;
+  margin-top: 1rem;
+  color: var(--muted);
+  font-family: 'Special Elite', monospace;
+  font-size: .7rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
 }
-.logo-star{
-  color:var(--gold);
-  font-size:2rem;
-  line-height:1;
-  opacity:0;
-  position:relative;
-  z-index:2;
-  transform:translate(var(--logo-star-offset-x),var(--logo-star-offset-y));
-  transform-origin:center;
-  animation:starFlicker 1s steps(1,end) 1.55s forwards, starOccasionalFlicker 12s steps(1,end) 8s infinite;
-}
-.logo-wordmark{
-  width:min(260px,72vw);
-  height:auto;
-  display:block;
-  opacity:0;
-  clip-path:inset(0 100% 0 0);
-  animation:sapLettersAppear 1.5s steps(3,end) 2.45s forwards, wordmarkGlow .8s ease 4.1s forwards;
-}
-.kicker{
-  font-family:'Special Elite',monospace;
-  color:var(--red);
-  font-size:clamp(.76rem,2vw,1rem);
-  letter-spacing:.24em;
-  text-transform:uppercase;
-  margin-bottom:1.1rem;
-  animation:softFlicker 8s steps(1,end) infinite;
-}
-h1{
-  font-family:'Cinzel',serif;
-  color:#f5ecd9;
-  font-size:clamp(2.15rem,7vw,4.6rem);
-  line-height:.98;
-  letter-spacing:.05em;
-  text-transform:uppercase;
-  text-shadow:0 0 38px rgba(184,50,42,.16);
-  margin-bottom:1rem;
-}
-h1 span{
-  display:block;
-  color:var(--gold);
-  font-size:.45em;
-  letter-spacing:.24em;
-  margin-top:.55rem;
-}
-.subtitle{
-  max-width:560px;
-  color:var(--paper-dim);
-  font-size:clamp(1.05rem,2.5vw,1.32rem);
-  margin:0 auto 1.65rem;
-}
-.notice{
-  font-family:'Special Elite',monospace;
-  color:var(--red);
-  font-size:clamp(.82rem,2.2vw,1rem);
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  margin-bottom:1.2rem;
-}
-.contact{
-  color:var(--muted);
-  font-size:1rem;
-}
-.contact a{
-  color:var(--gold);
-  text-decoration:none;
-  border-bottom:1px solid rgba(197,162,74,.32);
-}
-.contact a:hover{color:#f0cf72}
-.scanline{
-  position:absolute;
-  left:0;
-  right:0;
-  top:-20%;
-  height:20%;
-  z-index:1;
-  pointer-events:none;
-  background:linear-gradient(to bottom,transparent,rgba(197,162,74,.035),transparent);
-  animation:scan 8s linear infinite;
-}
-@keyframes scan{
-  0%{transform:translateY(0)}
-  100%{transform:translateY(720%)}
-}
-@keyframes drawCircle{
-  0%{stroke-dashoffset:100;opacity:1}
-  100%{stroke-dashoffset:0;opacity:1}
-}
-@keyframes circleOccasionalFlicker{
-  0%,82%,85%,88%,91%,100%{opacity:1;filter:none}
-  83%{opacity:.22;filter:brightness(1.8)}
-  84%{opacity:1;filter:brightness(1.3)}
-  86%{opacity:.35;filter:brightness(.8)}
-  89%{opacity:.12;filter:brightness(2)}
-  90%{opacity:1;filter:brightness(1.4)}
-}
-@keyframes starFlicker{
-  0%,16%,32%,48%{opacity:0;text-shadow:none}
-  8%,24%,40%,60%,100%{opacity:1;text-shadow:0 0 12px rgba(197,162,74,.72)}
-  72%{opacity:.35}
-  84%{opacity:1;text-shadow:0 0 18px rgba(184,50,42,.45)}
-}
-@keyframes starOccasionalFlicker{
-  0%,92%,100%{opacity:1}
-  93%{opacity:.22}
-  94%{opacity:1}
-  96%{opacity:.48}
-  97%{opacity:1}
-}
-@keyframes sapLettersAppear{
-  0%{opacity:1;clip-path:inset(0 100% 0 0)}
-  33%{opacity:1;clip-path:inset(0 66% 0 0)}
-  66%{opacity:1;clip-path:inset(0 33% 0 0)}
-  100%{opacity:1;clip-path:inset(0 0 0 0)}
-}
-@keyframes wordmarkGlow{
-  0%{filter:drop-shadow(0 0 0 rgba(197,162,74,0))}
-  50%{filter:drop-shadow(0 0 11px rgba(197,162,74,.48))}
-  100%{filter:drop-shadow(0 0 4px rgba(197,162,74,.18))}
-}
-@keyframes softFlicker{
-  0%,78%,81%,84%,87%,100%{opacity:1;text-shadow:0 0 9px rgba(184,50,42,.22)}
-  79%{opacity:.22;text-shadow:none}
-  80%{opacity:1;text-shadow:0 0 15px rgba(184,50,42,.55)}
-  82%{opacity:.45;text-shadow:none}
-  83%{opacity:1;text-shadow:0 0 12px rgba(184,50,42,.42)}
-  85%{opacity:.16;text-shadow:none}
-  86%{opacity:1;text-shadow:0 0 18px rgba(184,50,42,.6)}
-}
-@media(max-width:680px){
-  .holding{padding:1rem}
-  .holding::after{
-    bottom:1.15rem;
-    font-size:2.25rem;
-    white-space:normal;
-    line-height:1.1;
-    width:115vw;
+
+@keyframes signalShift {
+  0%, 88%, 100% {
+    transform: translate(0, 0);
+    opacity: .35;
   }
-  .poster{
-    min-height:calc(100vh - 2rem);
-    padding:3.2rem 1.15rem 2.2rem;
+  89% {
+    transform: translate(3px, -1px);
+    opacity: .55;
   }
-  .status{
-    top:1rem;
-    right:1rem;
-    font-size:.64rem;
+  90% {
+    transform: translate(-2px, 1px);
+    opacity: .2;
   }
-  .logo-emblem{width:92px;height:92px}
-  .logo-svg{width:92px;height:92px}
-  .logo-star{font-size:1.55rem}
-  .logo-wordmark{width:min(220px,70vw)}
-  .kicker{letter-spacing:.16em}
-  h1{letter-spacing:.035em}
-  h1 span{letter-spacing:.18em}
+  91% {
+    transform: translate(1px, 0);
+    opacity: .42;
+  }
 }
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{
-    animation:none !important;
-    transition:none !important;
+
+@media (max-width: 680px) {
+  .intro {
+    padding: 1.5rem .75rem;
   }
-  .logo-svg path,.logo-star,.logo-wordmark{
-    opacity:1 !important;
-    clip-path:none !important;
-    stroke-dashoffset:0 !important;
+
+  .intro-logo {
+    width: min(620px, 96vw);
+    max-height: 68vh;
+  }
+
+  .enter-wrap {
+    margin-top: .85rem;
+  }
+
+  .enter-wrap::before {
+    inset: -1rem -1.6rem -1.3rem;
+  }
+
+  .enter-wrap::after {
+    inset: -.65rem -1.2rem -.85rem;
+  }
+
+  .enter-link {
+    min-width: 116px;
+    min-height: 46px;
+    padding: .8rem 1.35rem;
+    font-size: .68rem;
+    letter-spacing: .22em;
+  }
+
+  .intro-note {
+    font-size: .58rem;
+    letter-spacing: .13em;
   }
 }
 </style>
 </head>
 <body>
-<main class="holding" aria-label="Société Acadienne du Paranormal, site bientôt disponible">
-  <div class="scanline" aria-hidden="true"></div>
-  <section class="poster">
-    <div class="status" aria-hidden="true">Dossier ouvert</div>
-    <div class="logo-lockup" aria-hidden="true">
-      <span class="logo-emblem">
-        <svg class="logo-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-          <path class="logo-circle-outer" d="M 118.5 60 A 58.5 58.5 0 1 0 1.5 60 A 58.5 58.5 0 1 0 118.5 60" pathLength="100"/>
-          <path class="logo-circle-inner" d="M 24 60 A 36 36 0 1 1 96 60 A 36 36 0 1 1 24 60" pathLength="100"/>
-        </svg>
-        <span class="logo-star">★</span>
-      </span>
-      <img class="logo-wordmark" src="data:image/png;base64,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" alt="S.A.P">
+<main class="intro" aria-label="Page d'entrée S.A.P">
+  <section class="intro-inner">
+    <img class="intro-logo" src="/assets/img/sapintro.jpg" alt="Société Acadienne du Paranormal">
+    <div class="enter-wrap">
+      <a class="enter-link" href="/accueil/">Entrer</a>
+      <p class="intro-note">Archives · Enquêtes · Acadie</p>
     </div>
-    <p class="kicker">Société Acadienne du Paranormal</p>
-    <h1>Archives de l’inexpliqué<span>en Acadie</span></h1>
-    <p class="notice">Site officiel bientôt disponible</p>
-    <p class="subtitle">Les dossiers sont en préparation. En attendant, l’équipe poursuit le travail de terrain, de classement et de documentation.</p>
-    <p class="contact">Contact : <a href="mailto:societeacadienneduparanormal@gmail.com">societeacadienneduparanormal@gmail.com</a></p>
   </section>
 </main>
 </body>
